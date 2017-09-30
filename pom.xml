@@ -69,7 +69,7 @@
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
-            <artifactId>mysql-connector-gjava</artifactId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <!-- ============================================== -->
 
