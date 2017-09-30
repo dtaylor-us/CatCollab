@@ -12,7 +12,7 @@
                     <h3 class="text-white panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body spacer-10">
-                    <form role="form" action="<c:url value='/login.do'/>" method="post">
+                    <form authority="form" action="<c:url value='/login.do'/>" method="post">
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Enter User Name..." name="username" type="text"

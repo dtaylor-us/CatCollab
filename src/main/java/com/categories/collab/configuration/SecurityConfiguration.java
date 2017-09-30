@@ -21,11 +21,6 @@ import java.util.List;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    final static String AUTH_METHOD_LDAP = "LDAP";
-    final static String AUTH_METHOD_IN_MEMORY = "IN_MEMORY";
-    final static String AUTH_METHOD_DATA_STORE = "DATA_STORE";
-
-    final static String AUTH_METHOD = AUTH_METHOD_DATA_STORE;
 
     @Autowired
     private DataConfiguration dataSource;
@@ -33,13 +28,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-        if (AUTH_METHOD.equals(AUTH_METHOD_IN_MEMORY)) {
+        if (Constants.AUTH_METHOD.equals(Constants.AUTH_METHOD_IN_MEMORY)) {
             auth.inMemoryAuthentication().withUser("user").password("123").roles("USER");
             auth.inMemoryAuthentication().withUser("admin").password("123").roles("ADMIN");
             auth.inMemoryAuthentication().withUser("dba").password("123").roles("DBA");
-        } else if (AUTH_METHOD.equals(AUTH_METHOD_LDAP)) {
+        } else if (Constants.AUTH_METHOD.equals(Constants.AUTH_METHOD_LDAP)) {
             auth.authenticationProvider(activeDirectoryLdapAuthenticationProvider());
-        } else if (AUTH_METHOD.equals(AUTH_METHOD_DATA_STORE)) {
+        } else if (Constants.AUTH_METHOD.equals(Constants.AUTH_METHOD_DATA_STORE)) {
 
             JdbcUserDetailsManager userDetailsService = new JdbcUserDetailsManager();
             userDetailsService.setDataSource(dataSource.getDataSource());
@@ -62,14 +57,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-
-        if (AUTH_METHOD.equals(AUTH_METHOD_IN_MEMORY)) {
+        if (Constants.AUTH_METHOD.equals(Constants.AUTH_METHOD_IN_MEMORY)) {
             httpSecurity
                     .authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                     .and()
                     .authorizeRequests().antMatchers("/console/**").access("hasRole('ROLE_DBA')");
-
-        } else if (AUTH_METHOD.equals(AUTH_METHOD_LDAP)) {
+        } else if (Constants.AUTH_METHOD.equals(Constants.AUTH_METHOD_LDAP)) {
             httpSecurity.authorizeRequests().antMatchers("/static/**").permitAll()
                     .and()
                     .authorizeRequests().antMatchers("/login**").permitAll()
@@ -79,34 +72,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .logout()
                     .and()
                     .rememberMe();
-        } else if (AUTH_METHOD.equals(AUTH_METHOD_DATA_STORE)) {
+        } else if (Constants.AUTH_METHOD.equals(Constants.AUTH_METHOD_DATA_STORE)) {
             httpSecurity
                     .authorizeRequests().antMatchers("/static/**").permitAll()
                     .and()
                     .authorizeRequests().antMatchers("/login**").permitAll()
                     .and()
                     .authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated();
-
-
             httpSecurity
-                    //create authentication for admin and anything with the URL=/admin/**
                     .authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                     .and()
                     .authorizeRequests().antMatchers("/welcome").access("hasRole('ROLE_USER')");
-            //.authorizeRequests().antMatchers("/customer/**").permitAll();
-
-
             httpSecurity
                     .formLogin().loginPage("/login").loginProcessingUrl("/login.do")
                     .defaultSuccessUrl("/welcome", true)
                     .failureUrl("/login?err=1")
                     .usernameParameter("username").passwordParameter("password");
-
-
             httpSecurity.csrf().disable();
             httpSecurity.headers().frameOptions().disable();
         }
-
     }
 
     @Bean
@@ -119,5 +103,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         return authProv;
     }
-
 }
