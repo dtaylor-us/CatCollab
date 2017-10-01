@@ -26,6 +26,7 @@ public class ItemServiceTest {
 
     @Autowired
     private ItemService itemService;
+
     @Autowired
     private CategoryService categoryService;
 
@@ -58,7 +59,7 @@ public class ItemServiceTest {
         categories.add(new Item("Test-Title2"));
 
         itemService.saveItemList(categories);
-        List<Item> foundItemList = Utils.iterableToList(itemService.listAllItems());
+        List<Item> foundItemList = Utils.iterableToList(itemService.getItemList());
 
         boolean result = foundItemList.size() > 0;
         assertEquals(result, true);

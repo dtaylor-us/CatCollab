@@ -82,12 +82,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             httpSecurity
                     .authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                     .and()
-                    .authorizeRequests().antMatchers("/welcome").access("hasRole('ROLE_USER')");
+                    .authorizeRequests().antMatchers("/api/**").access("hasRole('ROLE_USER')");
             httpSecurity
                     .formLogin().loginPage("/login").loginProcessingUrl("/login.do")
-                    .defaultSuccessUrl("/welcome", true)
+                    .defaultSuccessUrl("/api/category/", true)
                     .failureUrl("/login?err=1")
                     .usernameParameter("username").passwordParameter("password");
+            httpSecurity.csrf().disable();
+            httpSecurity.headers().frameOptions().disable();
+        } else if (Constants.AUTH_METHOD.equals(Constants.AUTH_METHOD_NONE)) {
+            //permit everything with no authentication
+            httpSecurity
+                    .authorizeRequests().antMatchers("/").permitAll()
+                    .and()
+                    .authorizeRequests().antMatchers("/console/**").permitAll();
+
             httpSecurity.csrf().disable();
             httpSecurity.headers().frameOptions().disable();
         }

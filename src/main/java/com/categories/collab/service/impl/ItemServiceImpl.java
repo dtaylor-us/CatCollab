@@ -30,7 +30,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Iterable<Item> listAllItems() {
+    public Iterable<Item> getItemList() {
         return itemRepository.findAll();
     }
 

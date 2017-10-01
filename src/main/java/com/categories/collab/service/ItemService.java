@@ -13,7 +13,7 @@ public interface ItemService {
 
     public Page<Item> getItemPages(Integer pageNumber);
 
-    Iterable<Item> listAllItems();
+    Iterable<Item> getItemList();
 
     Item getItemById(Integer id);
 

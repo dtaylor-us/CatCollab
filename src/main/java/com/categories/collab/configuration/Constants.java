@@ -7,9 +7,10 @@ public final class Constants {
     }
 
     public static final String AUTH_METHOD_LDAP = "LDAP";
+    public static final String AUTH_METHOD_NONE = "NONE";
     public static final String AUTH_METHOD_IN_MEMORY = "IN_MEMORY";
     public static final String AUTH_METHOD_DATA_STORE = "DATA_STORE";
-    public static final String AUTH_METHOD = AUTH_METHOD_DATA_STORE;
+    public static final String AUTH_METHOD = AUTH_METHOD_NONE;
 
 
     public static final String ROLE_USER = "ROLE_USER";

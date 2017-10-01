@@ -1,9 +1,13 @@
 package com.categories.collab.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +24,8 @@ public class Category {
     private String imageURL;
     private String imageURLFull;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Item> items;
 
     public List<Item> getItems() {

@@ -30,10 +30,10 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
 
     private void generateCategories() {
 
-        Category category = new Category("Super Heroes", "Super Hero Stuff", "Derek");
+        Category category = new Category("Seeded Category", "Description of Category", "Admin");
         categoryService.saveCategory(category);
 
-        Item item = new Item("Superman Vs. Batman", "Lame movie", "Derek", category);
+        Item item = new Item("Seeded Item", "Description of Item", "Admin", category);
         itemService.saveItem(item);
 
     }
