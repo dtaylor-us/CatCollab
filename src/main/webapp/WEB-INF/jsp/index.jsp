@@ -1,9 +1,22 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Categories</title>
-</head>
+<%@ include file="includes/_header.jsp" %>
+
 <body>
-<h2>Hello World!</h2>
+<%@ include file="includes/_nav.jsp" %>
+
+<h2>Category Page</h2>
+
+<script>
+    $.getJSON("http://localhost:8080/api/category/", {
+        ajax: 'true',
+        dataType: 'jsonp'
+    }, function (data) {
+        console.log(data);
+        $.each(data, function (index, single) {
+            $('#categoryList').append(single.title + ': ' + single.description + '<br>')
+        });
+    })
+</script>
+
+<p id="categoryList"></p>
 </body>
 </html>

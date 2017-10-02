@@ -1,15 +1,15 @@
 
 <%@ include file="includes/_header.jsp" %>
+<%@ include file="includes/_nav.jsp" %>
 
 <body>
-<h2><a href="/logout">Logout</a></h2>
 
 <div class="container spacer-100">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="text-white panel-title">Please Sign In</h3>
+                    <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body spacer-10">
                     <form authority="form" action="<c:url value='/login.do'/>" method="post">

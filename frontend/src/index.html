@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Categories Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <h2>Categories Page</h2>
+
+    <script>
+        $.getJSON("http://localhost:8080/api/category/", {
+            ajax: 'true',
+            dataType: 'jsonp'
+        }, function (data) {
+            console.log(data);
+            $.each(data, function (index, single) {
+                $('#categoryList').append(single.title + ': ' + single.description + '<br>')
+            });
+        })
+    </script>
+
+    <p id="categoryList"></p>
+</body>
+
+</html>

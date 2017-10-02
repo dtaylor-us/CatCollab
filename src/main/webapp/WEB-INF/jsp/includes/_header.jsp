@@ -24,23 +24,24 @@
     <c:url value="/webjars/jquery/3.2.1/jquery.min.js" var="jquery"/>
     <script src="${jquery}"></script>
 
-    <%--&lt;%&ndash;Bootstrap&ndash;%&gt;--%>
-    <%--<c:url value="/webjars/bootstrap/3.3.4/css/bootstrap.min.css" var="bootstrapCSS"/>--%>
+    <%--BootstrapCSS--%>
+    <%--<c:url value="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" var="bootstrapCSS"/>--%>
     <%--<link rel="stylesheet" href="${bootstrapCSS}" media="screen"--%>
 
-    <%--CUSTOM BOOTSWATCH--%>
-    <%--<c:url value="/static/css/bootswatch_cyborg.css" var="bootstrapCSS"/>--%>
-    <%--<link rel="stylesheet" href="${bootstrapCSS}" media="screen"/>--%>
-
-    <c:url value="/webjars/bootstrap/3.3.4/js/bootstrap.js" var="bootstrapJS"/>
+    <%--BootstrapJS--%>
+    <c:url value="/webjars/bootstrap/3.3.7/js/bootstrap.js" var="bootstrapJS"/>
     <script src="${bootstrapJS}"></script>
+
+    <%--CUSTOM BOOTSWATCH--%>
+    <c:url value="../../resources/css/bootswatch.css" var="bootstrapCSS"/>
+    <link rel="stylesheet" href="${bootstrapCSS}" media="screen"/>
 
     <%--font-awesome--%>
     <c:url value="/webjars/font-awesome/4.7.0/css/font-awesome.css" var="fontawesomeCSS"/>
     <link rel="stylesheet" href="${fontawesomeCSS}" media="screen"/>
 
     <%--custom CSS--%>
-    <c:url value="/static/css/custom-styles.css" var="customCSS"/>
+    <c:url value="../../resources/css/custom-styles.css" var="customCSS"/>
     <link rel="stylesheet" href="${customCSS}" media="screen"/>
 
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto+Condensed' rel='stylesheet'
