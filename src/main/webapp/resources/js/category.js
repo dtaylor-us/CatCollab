@@ -75,18 +75,22 @@ function openCategoryModal() {
 }
 
 function deleteCategory(id) {
+    var answer = confirm("Are you sure you want to delete this category?");
 
-    $.ajax({
-        type: 'delete',
-        url: '/api/category/' + id,
-        async: true,
-        dataType: "json",
-        success: function () {
-            window.location.reload();
-        },
-        error: function () {
-            alert("Delete was unsuccessful");
-        }
-    });
+    if (answer) {
+        $.ajax({
+            type: 'delete',
+            url: '/api/category/' + id,
+            async: true,
+            dataType: "json",
+            success: function () {
+                window.location.reload();
+            },
+            error: function () {
+                alert("Delete was unsuccessful");
+            }
+        });
+    }
+
 
 }

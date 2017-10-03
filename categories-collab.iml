@@ -5,11 +5,11 @@
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/java/com/categories/collab/Application.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/categories/collab/configuration/DataConfiguration.java</file>
           <file>file://$MODULE_DIR$/src/main/java/com/categories/collab/configuration/MvcConfiguration.java</file>
           <file>file://$MODULE_DIR$/src/main/java/com/categories/collab/configuration/RepositoryConfiguration.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/categories/collab/configuration/SecurityConfiguration.java</file>
           <file>file://$MODULE_DIR$/src/main/java/com/categories/collab/configuration/WebConfiguration.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/categories/collab/configuration/DataConfiguration.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/categories/collab/configuration/SecurityConfiguration.java</file>
         </fileset>
       </configuration>
     </facet>
