@@ -25,7 +25,7 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        generateCategories();
+//        generateCategories();
     }
 
     private void generateCategories() {

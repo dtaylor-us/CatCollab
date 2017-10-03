@@ -25,13 +25,12 @@ public class CategoryAPI {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Category save(@RequestBody Category category) {
+    public Category save(@ModelAttribute("category") Category category) {
         return categoryService.saveCategory(category);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Boolean delete(@PathVariable int id) {
-
         try {
             categoryService.deleteCategory(id);
             return true;

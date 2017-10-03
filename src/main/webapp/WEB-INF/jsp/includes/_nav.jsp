@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">THOUGHT<span class="text-light-blue">BOX</span></a>
+            <a class="navbar-brand" href="/">THOUGHT<span class="text-primary">BOX</span></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -33,8 +33,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title=""><span
-                            class="text-light-blue">Login</span> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title=""><span id="current-user"
+                            class="text-success">${userName}</span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="/logout"> Log-Out</a>

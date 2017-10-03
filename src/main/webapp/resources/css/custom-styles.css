@@ -99,6 +99,10 @@ body{
     vertical-align: middle;
 }
 
+.flt-rt {
+    float: right;
+}
+
 /*BACKGROUND COLOR*/
 .bg-f8f8f8 {
     background: #f8f8f8;
@@ -136,6 +140,10 @@ body{
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+.page-header {
+    font-family: "Roboto Condensed", "Helvetica Neue", sans-serif;
+}
+
 .thumbnail {
     height: 320px;
 }
@@ -167,7 +175,6 @@ body{
 
 .mainSBLink {
     font-size: 1.2em;
-    font-weight: 600;
 }
 
 

@@ -63,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .and()
                     .authorizeRequests().antMatchers("/console/**").access("hasRole('ROLE_DBA')");
         } else if (Constants.AUTH_METHOD.equals(Constants.AUTH_METHOD_LDAP)) {
-            httpSecurity.authorizeRequests().antMatchers("/static/**").permitAll()
+            httpSecurity.authorizeRequests().antMatchers("/resources/**").permitAll()
                     .and()
                     .authorizeRequests().antMatchers("/login**").permitAll()
                     .and()
@@ -74,7 +74,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .rememberMe();
         } else if (Constants.AUTH_METHOD.equals(Constants.AUTH_METHOD_DATA_STORE)) {
             httpSecurity
-                    .authorizeRequests().antMatchers("/static/**").permitAll()
+                    .authorizeRequests().antMatchers("/resources/**").permitAll()
                     .and()
                     .authorizeRequests().antMatchers("/login**").permitAll()
                     .and()
@@ -97,7 +97,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .and()
                     .authorizeRequests().antMatchers("/console/**").permitAll()
                     .and()
-                    .authorizeRequests().antMatchers("/static/**").permitAll();
+                    .authorizeRequests().antMatchers("/resources/**").permitAll();
 
             httpSecurity.csrf().disable();
             httpSecurity.headers().frameOptions().disable();
