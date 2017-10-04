@@ -1,5 +1,6 @@
 package com.categories.collab.service;
 
+import com.categories.collab.domain.Category;
 import com.categories.collab.domain.Item;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ public interface ItemService {
 
     List<Item> getItemByTitle(String title);
 
-    public Page<Item> getItemPages(Integer pageNumber);
+    Page<Item> getItemPages(Integer pageNumber);
 
     Iterable<Item> getItemList();
 
@@ -22,4 +23,6 @@ public interface ItemService {
     Iterable<Item> saveItemList(Iterable<Item> items);
 
     void deleteItem(Integer id);
+
+    List<Item> getItemsByCategory(Category category);
 }

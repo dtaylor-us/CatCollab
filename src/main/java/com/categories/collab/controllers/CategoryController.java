@@ -12,4 +12,10 @@ public class CategoryController {
         Utils.displayUserName(model);
         return "category";
     }
+
+    @RequestMapping(value = "/item")
+    public String itemPage(Model model) {
+        Utils.displayUserName(model);
+        return "category-items";
+    }
 }

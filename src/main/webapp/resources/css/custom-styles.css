@@ -103,6 +103,10 @@ body{
     float: right;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 /*BACKGROUND COLOR*/
 .bg-f8f8f8 {
     background: #f8f8f8;

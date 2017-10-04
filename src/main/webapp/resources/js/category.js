@@ -1,35 +1,51 @@
 (function () {
+    localStorage.removeItem('categoryID');
+
     $.getJSON("/api/category/", {
         ajax: 'true',
         dataType: 'jsonp'
     }, function (data) {
+
+        var rowIndex = 0;
+
         $.each(data, function (index, model) {
+            var categoryID = model.id;
             var currentUser = document.getElementById('current-user').innerHTML;
             var editButton = "";
             var deleteButton = "";
 
-            if (currentUser === model.author) {
-                editButton = "<button class='btn btn-warning flt-rt' onclick='editCategory(" + model.id + ")'>Edit</button>";
-                deleteButton = "<button class='btn btn-danger flt-rt' id='deleteButton' onclick='deleteCategory(" + model.id + ")'>Delete</button>";
+            var indexedRowID = 'category-row' + rowIndex;
 
+            if (currentUser === model.author) {
+                editButton = "<button class='btn btn-warning' onclick='editCategory(" + categoryID + ")'>Edit</button>";
+                deleteButton = "<button class='btn btn-danger' id='deleteButton' onclick='deleteCategory(" + categoryID + ")'>Delete</button>";
             }
 
             $('#category-table').find('tbody')
                 .append(
-                    "<tr>" +
-                    "<td style='vertical-align: middle'>" + model.id + "</td>" +
+                    "<tr class='pointer' id=" + indexedRowID + ">" +
+                    "<td style='vertical-align: middle'>" + categoryID + "</td>" +
                     "<td style='vertical-align: middle'>" + model.author + "</td>" +
                     "<td style='vertical-align: middle'>" + model.title + "</td>" +
                     "<td style='vertical-align: middle'>" + model.description + "</td>" +
                     "<td style='vertical-align: middle'>" + editButton + "</td>" +
                     "<td style='vertical-align: middle'>" + deleteButton + "</td>" +
                     "</tr>"
-                )
+                );
+
+            $('#category-row' + rowIndex).click(function () {
+                localStorage.setItem("categoryID", categoryID);
+                window.location.href = '/item';
+            });
+
+            rowIndex++;
         });
     });
 })();
 
 function saveCategory() {
+    $('#category-messages').empty(); //clear messages from modal
+
     var title = $('#inputTitle').val();
     var description = $('#inputDescription').val();
     var author = $('#inputAuthor').val();
@@ -41,18 +57,28 @@ function saveCategory() {
         description: description
     };
 
-    console.log(category);
+    if ((title === null || title === '')) {
+        $('#cat-title-label').addClass('text-warning').append(" *");
+        $('#category-messages').append("<p class='text-warning'>Title is required</p>");
+    }
 
-    $.ajax({
-        type: "post",
-        data: category,
-        url: "/api/category/",
-        async: true,
-        dataType: "json",
-        success: function () {
-            window.location.reload();
-        }
-    });
+    if ((description === null || description === '')) {
+        $('#cat-desc-label').addClass("text-warning").append(" *");
+        $('#category-messages').append("<p class='text-warning'>Description is required</p>")
+    }
+
+    if (title && description) {
+        $.ajax({
+            type: "post",
+            data: category,
+            url: "/api/category/",
+            async: true,
+            dataType: "json",
+            success: function () {
+                window.location.reload();
+            }
+        });
+    }
 }
 
 function editCategory(id) {
@@ -91,6 +117,4 @@ function deleteCategory(id) {
             }
         });
     }
-
-
 }

@@ -108,4 +108,26 @@ public class ItemRepositoryTest {
         itemRepository.delete(item);
         assertNull(itemRepository.findOne(item.getId()));
     }
+
+
+    @Test
+    public void testGetItemsByCategory() {
+        Category category = new Category("Category Parent");
+        categoryRepository.save(category);
+
+        Item item = new Item("Child",  category);
+        Item item2 = new Item("Child2",  category);
+        Item item3 = new Item("Child3",  category);
+
+        List<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        itemRepository.save(items);
+
+        List<Item> categoryItems = itemRepository.findAllByCategory(category);
+        assertEquals(true, categoryItems.size() == 3);
+
+        itemRepository.delete(item);
+    }
 }

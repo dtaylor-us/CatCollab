@@ -85,7 +85,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .authorizeRequests().antMatchers("/api/**").access("hasRole('ROLE_USER')");
             httpSecurity
                     .formLogin().loginPage("/login").loginProcessingUrl("/login.do")
-                    .defaultSuccessUrl("/api/category/", true)
+                    .defaultSuccessUrl("/category/", true)
                     .failureUrl("/login?err=1")
                     .usernameParameter("username").passwordParameter("password");
             httpSecurity.csrf().disable();

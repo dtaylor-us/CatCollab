@@ -25,7 +25,7 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-//        generateCategories();
+        generateCategories();
     }
 
     private void generateCategories() {
@@ -33,8 +33,14 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         Category category = new Category("Seeded Category", "Description of Category", "Admin");
         categoryService.saveCategory(category);
 
-        Item item = new Item("Seeded Item", "Description of Item", "Admin", category);
-        itemService.saveItem(item);
+        Item item1 = new Item("Seeded Item1", "Description of Item", "Admin", category);
+        Item item2 = new Item("Seeded Item2", "Description of Item", "Admin", category);
+        Item item3 = new Item("Seeded Item3", "Description of Item", "Admin", category);
+        Item item4 = new Item("Seeded Item4", "Description of Item", "Admin", category);
+        itemService.saveItem(item1);
+        itemService.saveItem(item2);
+        itemService.saveItem(item3);
+        itemService.saveItem(item4);
 
     }
 

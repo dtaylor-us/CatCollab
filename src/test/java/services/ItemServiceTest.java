@@ -109,4 +109,28 @@ public class ItemServiceTest {
         itemService.deleteItem(item.getId());
         assertNull(itemService.getItemById(item.getId()));
     }
+
+    @Test
+    public void testGetItemsByCategory() {
+        Category category = new Category("Category Parent");
+        categoryService.saveCategory(category);
+
+        Item item = new Item("Child",  category);
+        Item item2 = new Item("Child2",  category);
+        Item item3 = new Item("Child3",  category);
+
+        List<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        itemService.saveItemList(items);
+
+        List<Item> categoryItems = itemService.getItemsByCategory(category);
+        assertEquals(true, categoryItems.size() == 3);
+
+        itemService.deleteItem(item.getId());
+        itemService.deleteItem(item2.getId());
+        itemService.deleteItem(item3.getId());
+        categoryService.deleteCategory(category.getId());
+    }
 }

@@ -1,6 +1,7 @@
 package com.categories.collab.service.impl;
 
 import com.categories.collab.configuration.Constants;
+import com.categories.collab.domain.Category;
 import com.categories.collab.domain.Item;
 import com.categories.collab.repositories.ItemRepository;
 import com.categories.collab.service.ItemService;
@@ -52,5 +53,10 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void deleteItem(Integer id) {
         itemRepository.delete(id);
+    }
+
+    @Override
+    public List<Item> getItemsByCategory(Category category) {
+        return itemRepository.findAllByCategory(category);
     }
 }
