@@ -7,7 +7,7 @@
         </li>
 
         <li>
-            <%--<a href="#"><span class="mainSBLink"><i class="fa fa-tags"></i> View Categories</span></a>--%>
+            <a onclick="" href="/item" ><span class="mainSBLink"><i class="fa fa-tags"></i> View All Items</span></a>
         </li>
     </div>
 </div>

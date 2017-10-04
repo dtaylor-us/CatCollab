@@ -13,9 +13,14 @@ public class CategoryController {
         return "category";
     }
 
+    @RequestMapping(value = "/category-item")
+    public String categoryItemPage(Model model) {
+        Utils.displayUserName(model);
+        return "category-item";
+    }
     @RequestMapping(value = "/item")
     public String itemPage(Model model) {
         Utils.displayUserName(model);
-        return "category-items";
+        return "item";
     }
 }

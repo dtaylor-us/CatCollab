@@ -1,127 +1,120 @@
 (function () {
+    // localStorage.removeItem('categoryID');
 
-    var categoryID = '';
-    var categoryName = '';
-    var storedID = localStorage.getItem('categoryID');
-
-    if (storedID) {
-        categoryID = storedID;
-        $('#selected-category').val(storedID);
-        console.log('stored id has been saved in hidden input tag');
-        localStorage.removeItem('categoryID');
-        console.log('id has been removed from storage');
-    } else {
-        console.log('no id present on page');
-    }
-    console.log(categoryID);
-
-
-
-
-    $.getJSON("/api/category/" + categoryID, {
-        ajax: true,
-        dataType: 'jsonp'
-    }, function (data) {
-        categoryName = data.title
-        $('#parent-category-title').append(
-            "<h4>" + categoryName + " : " +  data.description  + "</h4>"
-        )
-    });
-
-
-    //make an ajax call for list of items by category id
-    $.getJSON("/api/item/category/" + categoryID, {
-        ajax: true,
+    $.getJSON("/api/item/", {
+        ajax: 'true',
         dataType: 'jsonp'
     }, function (data) {
 
-        if (data.length === 0) {
-            $('#category-item-messages').append(
-                "<h4 class='text-warning'>No Items have been created for this category</h4>"
-            )
-        } else {
-            $.each(data, function (index, model) {
-                var itemID = model.id;
-                var currentUser = document.getElementById('current-user').innerHTML;
-                var editButton = "";
-                var deleteButton = "";
+        var rowIndex = 0;
 
-                if (currentUser === model.author) {
-                    editButton = "<button class='btn btn-warning' onclick='editItem(" + itemID + ")'>Edit</button>";
-                    deleteButton = "<button class='btn btn-danger' id='deleteButton' onclick='deleteItem(" + itemID + ")'>Delete</button>";
-                }
+        $.each(data, function (index, model) {
+            var itemID = model.id;
+            var currentUser = document.getElementById('current-user').innerHTML;
+            var editButton = "";
+            var deleteButton = "";
 
-                $('#item-table').find('tbody').append(
-                    "<tr class='pointer'>" +
+            var indexedRowID = 'item-row' + rowIndex;
+
+            if (currentUser === model.author) {
+                editButton = "<button class='btn btn-warning' onclick='editItem(" + itemID + ")'>Edit</button>";
+                deleteButton = "<button class='btn btn-danger' id='deleteButton' onclick='deleteItem(" + itemID + ")'>Delete</button>";
+            }
+
+            $('#item-table').find('tbody')
+                .append(
+                    "<tr class='pointer' id=" + indexedRowID + ">" +
                     "<td style='vertical-align: middle'>" + itemID + "</td>" +
                     "<td style='vertical-align: middle'>" + model.author + "</td>" +
                     "<td style='vertical-align: middle'>" + model.title + "</td>" +
                     "<td style='vertical-align: middle'>" + model.description + "</td>" +
-                    "<td style='vertical-align: middle'>" + categoryName + "</td>" +
                     "<td style='vertical-align: middle'>" + editButton + "</td>" +
                     "<td style='vertical-align: middle'>" + deleteButton + "</td>" +
                     "</tr>"
-                )
-            })
-        }
+                );
+
+            $('#item-row' + rowIndex).click(function () {
+                localStorage.setItem("itemID", itemID);
+                window.location.href = '/item';
+            });
+
+            rowIndex++;
+        });
     });
-
-
-    //for each record returned append a row to the table
-
-    //make an ajax call to retreive category by id
-
-    //set the appropriate properties for the category on the UI.
-
-
-    // $.getJSON("/api/item/category", {
-    //     ajax: 'true',
-    //     dataType: 'jsonp'
-    // }, function (data) {
-    //
-    //     var rowIndex = 0;
-    //
-    //     $.each(data, function (index, model) {
-    //         var categoryID = model.id;
-    //         var currentUser = document.getElementById('current-user').innerHTML;
-    //         var editButton = "";
-    //         var deleteButton = "";
-    //
-    //         var categoryRowID = 'category-row' + rowIndex;
-    //
-    //         if (currentUser === model.author) {
-    //             editButton = "<button class='btn btn-warning flt-rt' onclick='editCategory(" + categoryID + ")'>Edit</button>";
-    //             deleteButton = "<button class='btn btn-danger flt-rt' id='deleteButton' onclick='deleteCategory(" + categoryID + ")'>Delete</button>";
-    //         }
-    //
-    //         $('#category-table').find('tbody')
-    //             .append(
-    //                 "<tr class='pointer' id=" + categoryRowID + ">" +
-    //                 "<td style='vertical-align: middle'>" + categoryID + "</td>" +
-    //                 "<td style='vertical-align: middle'>" + model.author + "</td>" +
-    //                 "<td style='vertical-align: middle'>" + model.title + "</td>" +
-    //                 "<td style='vertical-align: middle'>" + model.description + "</td>" +
-    //                 "<td style='vertical-align: middle'>" + editButton + "</td>" +
-    //                 "<td style='vertical-align: middle'>" + deleteButton + "</td>" +
-    //                 "</tr>"
-    //             );
-    //
-    //         $('#category-row' + rowIndex).click(function () {
-    //             localStorage.setItem("categoryID", categoryID);
-    //             window.location.href = '/item';
-    //         });
-    //
-    //         rowIndex++;
-    //     });
-    //
-    //
-    // });
 })();
 
-//If page is reloaded use same categoryID to populate list.
-$(window).bind('beforeunload', function () {
-    var id = $('#selected-category').val();
-    if (id) {
-        localStorage.setItem('categoryID', id);
-    }
-});
+// function saveCategory() {
+//     $('#category-messages').empty(); //clear messages from modal
+//
+//     var title = $('#inputTitle').val();
+//     var description = $('#inputDescription').val();
+//     var author = $('#inputAuthor').val();
+//     var category = {
+//         id: $('#categoryID').val(),
+//         version: $('#categoryVersion').val(),
+//         title: title,
+//         author: author,
+//         description: description
+//     };
+//
+//     if ((title === null || title === '')) {
+//         $('#cat-title-label').addClass('text-warning').append(" *");
+//         $('#category-messages').append("<p class='text-warning'>Title is required</p>");
+//     }
+//
+//     if ((description === null || description === '')) {
+//         $('#cat-desc-label').addClass("text-warning").append(" *");
+//         $('#category-messages').append("<p class='text-warning'>Description is required</p>")
+//     }
+//
+//     if (title && description) {
+//         $.ajax({
+//             type: "post",
+//             data: category,
+//             url: "/api/category/",
+//             async: true,
+//             dataType: "json",
+//             success: function () {
+//                 window.location.reload();
+//             }
+//         });
+//     }
+// }
+//
+// function editCategory(id) {
+//     $.getJSON('/api/category/' + id, {
+//         ajax: 'true'
+//     }, function (category) {
+//         console.log(category);
+//         $('#categoryID').val(category.id);
+//         $('#inputAuthor').val(category.author);
+//         $('#categoryVersion').val(category.version);
+//         $('#inputTitle').val(category.title);
+//         $('#inputDescription').val(category.description);
+//     });
+//     $("#categoryModal").modal('show');
+// }
+//
+// function openCategoryModal() {
+//     document.getElementById("categoryForm").reset();
+//     $('#categoryModal').modal('show')
+// }
+//
+// function deleteCategory(id) {
+//     var answer = confirm("Are you sure you want to delete this category?");
+//
+//     if (answer) {
+//         $.ajax({
+//             type: 'delete',
+//             url: '/api/category/' + id,
+//             async: true,
+//             dataType: "json",
+//             success: function () {
+//                 window.location.reload();
+//             },
+//             error: function () {
+//                 alert("Delete was unsuccessful");
+//             }
+//         });
+//     }
+// }

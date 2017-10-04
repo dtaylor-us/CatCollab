@@ -35,7 +35,7 @@
 
             $('#category-row' + rowIndex).click(function () {
                 localStorage.setItem("categoryID", categoryID);
-                window.location.href = '/item';
+                window.location.href = '/category-item';
             });
 
             rowIndex++;

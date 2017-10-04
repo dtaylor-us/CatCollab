@@ -74,6 +74,6 @@
         </div>
     </div>
 </div>
-<script src="../../resources/js/item.js"></script>
+<script src="../../resources/js/category-items.js"></script>
 </body>
 </html>

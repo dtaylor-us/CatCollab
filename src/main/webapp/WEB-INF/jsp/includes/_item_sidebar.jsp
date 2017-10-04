@@ -7,6 +7,16 @@
         </li>
 
         <li>
+            <a onclick="" href="/item" ><span class="mainSBLink"><i class="fa fa-tags"></i> View All Items</span></a>
+        </li>
+
+        <br>
+
+        <li>
+            <a onclick="" href="/category" ><span class="mainSBLink"><i class="fa fa-arrow-left"></i> Back To Categories</span></a>
+        </li>
+
+        <li>
             <%--<a href="#"><span class="mainSBLink"><i class="fa fa-tags"></i> View Categories</span></a>--%>
         </li>
     </div>
