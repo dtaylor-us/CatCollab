@@ -1,47 +1,8 @@
-(function () {
-    localStorage.removeItem('categoryID');
-
-    $.getJSON("/api/category/", {
-        ajax: 'true',
-        dataType: 'jsonp'
-    }, function (data) {
-
-        var rowIndex = 0;
-
-        $.each(data, function (index, model) {
-            var categoryID = model.id;
-            var currentUser = document.getElementById('current-user').innerHTML;
-            var editButton = "";
-            var deleteButton = "";
-
-            var indexedRowID = 'category-row' + rowIndex;
-
-            if (currentUser === model.author) {
-                editButton = "<button class='btn btn-warning' onclick='editCategory(" + categoryID + ")'>Edit</button>";
-                deleteButton = "<button class='btn btn-danger' id='deleteButton' onclick='deleteCategory(" + categoryID + ")'>Delete</button>";
-            }
-
-            $('#category-table').find('tbody')
-                .append(
-                    "<tr class='pointer' id=" + indexedRowID + ">" +
-                    "<td style='vertical-align: middle'>" + categoryID + "</td>" +
-                    "<td style='vertical-align: middle'>" + model.author + "</td>" +
-                    "<td style='vertical-align: middle'>" + model.title + "</td>" +
-                    "<td style='vertical-align: middle'>" + model.description + "</td>" +
-                    "<td style='vertical-align: middle'>" + editButton + "</td>" +
-                    "<td style='vertical-align: middle'>" + deleteButton + "</td>" +
-                    "</tr>"
-                );
-
-            $('#category-row' + rowIndex).click(function () {
-                localStorage.setItem("categoryID", categoryID);
-                window.location.href = '/category-item';
-            });
-
-            rowIndex++;
-        });
-    });
-})();
+function Category(model) {
+    this.title = model.title;
+    this.author = model.author;
+    this.description = model.description;
+}
 
 function saveCategory() {
     $('#category-messages').empty(); //clear messages from modal

@@ -3,8 +3,8 @@
 
 <%@ include file="includes/_nav.jsp" %>
 
+
 <div class="wrapper spacer-25">
-    <script src="../../resources/js/item.js"></script>
 
     <%--SIDEBAR--%>
     <%@ include file="includes/_item_sidebar.jsp" %>
@@ -74,5 +74,6 @@
     </div>
 </div>
 
+<script src="../../resources/js/model/item.js"></script>
 </body>
 </html>

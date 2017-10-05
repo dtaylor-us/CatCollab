@@ -1,5 +1,4 @@
 (function () {
-
     var categoryID = '';
     var categoryName = '';
     var storedID = localStorage.getItem('categoryID');
@@ -15,16 +14,13 @@
     }
     console.log(categoryID);
 
-
-
-
     $.getJSON("/api/category/" + categoryID, {
         ajax: true,
         dataType: 'jsonp'
     }, function (data) {
         categoryName = data.title
         $('#parent-category-title').append(
-            "<h4>" + categoryName + " : " +  data.description  + "</h4>"
+            "<h4>" + categoryName + " : " + data.description + "</h4>"
         )
     });
 
@@ -67,55 +63,6 @@
     });
 
 
-    //for each record returned append a row to the table
-
-    //make an ajax call to retreive category by id
-
-    //set the appropriate properties for the category on the UI.
-
-
-    // $.getJSON("/api/item/category", {
-    //     ajax: 'true',
-    //     dataType: 'jsonp'
-    // }, function (data) {
-    //
-    //     var rowIndex = 0;
-    //
-    //     $.each(data, function (index, model) {
-    //         var categoryID = model.id;
-    //         var currentUser = document.getElementById('current-user').innerHTML;
-    //         var editButton = "";
-    //         var deleteButton = "";
-    //
-    //         var categoryRowID = 'category-row' + rowIndex;
-    //
-    //         if (currentUser === model.author) {
-    //             editButton = "<button class='btn btn-warning flt-rt' onclick='editCategory(" + categoryID + ")'>Edit</button>";
-    //             deleteButton = "<button class='btn btn-danger flt-rt' id='deleteButton' onclick='deleteCategory(" + categoryID + ")'>Delete</button>";
-    //         }
-    //
-    //         $('#category-table').find('tbody')
-    //             .append(
-    //                 "<tr class='pointer' id=" + categoryRowID + ">" +
-    //                 "<td style='vertical-align: middle'>" + categoryID + "</td>" +
-    //                 "<td style='vertical-align: middle'>" + model.author + "</td>" +
-    //                 "<td style='vertical-align: middle'>" + model.title + "</td>" +
-    //                 "<td style='vertical-align: middle'>" + model.description + "</td>" +
-    //                 "<td style='vertical-align: middle'>" + editButton + "</td>" +
-    //                 "<td style='vertical-align: middle'>" + deleteButton + "</td>" +
-    //                 "</tr>"
-    //             );
-    //
-    //         $('#category-row' + rowIndex).click(function () {
-    //             localStorage.setItem("categoryID", categoryID);
-    //             window.location.href = '/item';
-    //         });
-    //
-    //         rowIndex++;
-    //     });
-    //
-    //
-    // });
 })();
 
 //If page is reloaded use same categoryID to populate list.

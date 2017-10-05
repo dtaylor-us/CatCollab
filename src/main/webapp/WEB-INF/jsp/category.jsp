@@ -4,7 +4,6 @@
 <%@ include file="includes/_nav.jsp" %>
 
 <div class="wrapper spacer-25">
-    <script src="../../resources/js/category.js"></script>
 
     <%--SIDEBAR--%>
     <%@ include file="includes/_cat_sidebar.jsp" %>
@@ -20,6 +19,7 @@
                     <th>Author</th>
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Category Items</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -72,6 +72,14 @@
         </div>
     </div>
 </div>
+<script src="../../resources/js/init.js"></script>
+<script src="../../resources/js/model/category.js"></script>
+<script src="../../resources/js/view/category-list.js"></script>
+<script>
+    $(document).ready(function () {
+        cat.v.category_list.loadUI();
+    });
+</script>
 
 </body>
 </html>
