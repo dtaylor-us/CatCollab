@@ -74,6 +74,6 @@
     </div>
 </div>
 
-<script src="../../resources/js/model/item.js"></script>
+<script src="../../resources/js/item.js"></script>
 </body>
 </html>

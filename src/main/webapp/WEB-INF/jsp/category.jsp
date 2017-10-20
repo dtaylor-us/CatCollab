@@ -73,8 +73,8 @@
     </div>
 </div>
 <script src="../../resources/js/init.js"></script>
-<script src="../../resources/js/model/category.js"></script>
-<script src="../../resources/js/view/category-list.js"></script>
+<script src="../../resources/js/category.js"></script>
+<script src="../../resources/js/category-list.js"></script>
 <script>
     $(document).ready(function () {
         cat.v.category_list.loadUI();
