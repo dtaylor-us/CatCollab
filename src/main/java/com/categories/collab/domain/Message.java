@@ -25,6 +25,13 @@ public class Message {
     public Message() {
     }
 
+    public Message(String username, String subject, String body, Date createDate) {
+        this.username = username;
+        this.subject = subject;
+        this.body = body;
+        this.createDate = createDate;
+    }
+
     public Message(String subject) {
         this.subject = subject;
     }
