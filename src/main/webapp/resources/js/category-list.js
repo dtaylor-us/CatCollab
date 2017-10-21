@@ -26,7 +26,7 @@ cat.v.category_list = {
 
                 //create unique id for each category item button
                 var indexButtonID = 'category-item-button' + rowIndex;
-                var viewItemButton = "<button id='" + indexButtonID + "' class='btn btn-info'>View Items</button>";
+                var viewItemButton = "<button id='" + indexButtonID + "' class='btn btn-info'> <i class='fa fa-navitem fa-lg fa-cube'> </i> Items</button>";
 
 
                 //conditionally display buttons to edit records based on current user

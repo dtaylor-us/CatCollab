@@ -1,11 +1,13 @@
 package com.categories.collab.bootstrap;
 
 
+import com.categories.collab.common.Utils;
 import com.categories.collab.domain.Category;
 import com.categories.collab.domain.Item;
 import com.categories.collab.domain.Message;
 import com.categories.collab.service.CategoryService;
 import com.categories.collab.service.ItemService;
+import com.categories.collab.service.MessageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -13,7 +15,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -25,13 +26,17 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private CategoryService categoryService;
 
+
+    @Autowired
+    private MessageService messageService;
+
     @Autowired
     private ItemService itemService;
 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        generateCategories();
+//        generateMessages();
     }
 
     private void generateCategories() {
@@ -52,32 +57,21 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
 
 
     private void generateMessages() {
-
-
-        Date dt1 = new Date();
-        Date dt2 = new Date();
-        Date dt3 = new Date();
-        Date dt4 = new Date();
-        Date dt5 = new Date();
-        Date dt6 = new Date();
-
-        List<Date> dates = new ArrayList<>();
-
-        for (int i = 1; i < 5; i++){
-            Date currentDate = dates.get(i);
-
-            Calendar c = Calendar.getInstance();
-            c.setTime(dates.get(i));
-            c.add(Calendar.DATE, i);
-             = c.getTime();
-        }
-
-        Message message = new Message("user", "Issue with category", "Hello, to whom it may concern I have been having issues with my account", initDate.);
+        Message message = new Message("user", "Issue with category", "Hello, to whom it may concern I have been having issues with my account", new Date());
         Message message1 = new Message("user", "Issue with category1", "Hello, to whom it may concern I have been having issues with my account", new Date());
         Message message2 = new Message("user", "Issue with category2", "Hello, to whom it may concern I have been having issues with my account", new Date());
         Message message3 = new Message("user", "Issue with category3", "Hello, to whom it may concern I have been having issues with my account", new Date());
         Message message4 = new Message("user", "Issue with category4", "Hello, to whom it may concern I have been having issues with my account", new Date());
 
+        List<Message> messages = new ArrayList<>();
+
+        messages.add(message);
+        messages.add(message1);
+        messages.add(message2);
+        messages.add(message3);
+        messages.add(message4);
+
+        messageService.saveMessageList(messages);
     }
 
 }

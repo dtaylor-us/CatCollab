@@ -16,32 +16,36 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                       title="Our Collection of Templates &amp; Themes"> <i
-                            class="fa fa-navitem fa-lg fa-comment"></i> What's New? <b class="caret"></b></a>
-                </li>
-
+                <%--<li class="dropdown">--%>
+                <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown"--%>
+                <%--title=""> <i--%>
+                <%--class="fa fa-navitem fa-lg fa-comment"></i> What's New? <b class="caret"></b></a>--%>
+                <%--</li>--%>
                 <li>
-                    <a href="/help" title="Help with Start Bootstrap Templates &amp; Themes"><i
-                            class="fa fa-navitem fa-lg fa-info-circle"></i> Help</a>
+                    <a href="/category" title=""><i
+                            class="fa fa-navitem fa-lg fa-tag"></i> Categories </a>
                 </li>
                 <li>
-                    <a href="/contact" title="Contact the Start Bootstrap Team"><i
+                    <a href="/item" title=""><i
+                            class="fa fa-navitem fa-lg fa-cube"></i> Items</a>
+                </li>
+                <li>
+                    <a href="/contact" title=""><i
                             class="fa fa-navitem fa-lg fa-envelope"></i> Contact </a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" title=""><span id="current-user"
-                            class="text-success">${userName}</span> <b class="caret"></b></a>
+                                                                                              class="text-success">${userName}</span>
+                        <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="/logout"> Log-Out</a>
                         </li>
-                        <li>
-                            <a href="/customer"> User</a>
-                        </li>
+                        <%--<li>--%>
+                        <%--<a href="/customer"> User</a>--%>
+                        <%--</li>--%>
                     </ul>
                 </li>
                 <li>
