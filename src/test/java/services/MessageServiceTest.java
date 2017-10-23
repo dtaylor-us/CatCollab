@@ -55,7 +55,7 @@ public class MessageServiceTest {
         messages.add(new Message("Test-Title2"));
 
         messageService.saveMessageList(messages);
-        List<Message> foundMessageList = Utils.iterableToList(messageService.listAllMessagesOrderByDate());
+        List<Message> foundMessageList = Utils.iterableToList(messageService.getMessageList());
 
         boolean result = foundMessageList.size() > 0;
         assertEquals(result, true);
@@ -72,7 +72,7 @@ public class MessageServiceTest {
         message.setUsername(username);
 
         messageService.saveMessage(message);
-        List<Message> foundMessage = Utils.iterableToList(messageService.listUserMessages(username));
+        List<Message> foundMessage = Utils.iterableToList(messageService.getMessageList());
 
         boolean result = foundMessage.stream().anyMatch(msg -> msg.getUsername().equals(username));
         assertEquals(result, true);

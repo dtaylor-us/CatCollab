@@ -12,16 +12,6 @@ public class MessageServiceImpl implements MessageService {
     private MessageRepository messageRepository;
 
     @Override
-    public Iterable<Message> listAllMessagesOrderByDate() {
-        return messageRepository.findAllByOrderByCreateDateDesc();
-    }
-
-    @Override
-    public Iterable<Message> listUserMessages(String username) {
-        return messageRepository.findAllByUsernameOrderByCreateDate(username);
-    }
-
-    @Override
     public Iterable<Message> getMessageList() {
         return messageRepository.findAll();
     }

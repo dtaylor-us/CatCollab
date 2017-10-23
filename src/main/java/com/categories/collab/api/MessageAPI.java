@@ -4,11 +4,7 @@ import com.categories.collab.domain.Message;
 import com.categories.collab.service.MessageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/messages")
@@ -20,12 +16,7 @@ public class MessageAPI {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Iterable<Message> getAll() {
-        return messageService.listAllMessagesOrderByDate();
-    }
-
-    @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)
-    public Iterable<Message> getAllByUser(@PathVariable String username) {
-        return messageService.listUserMessages(username);
+        return messageService.getMessageList();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

@@ -6,10 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface MessageService {
 
-    Iterable<Message> listAllMessagesOrderByDate();
-
-    Iterable<Message> listUserMessages(String username);
-
     Iterable<Message> getMessageList();
 
     Message getMessageById(Integer id);

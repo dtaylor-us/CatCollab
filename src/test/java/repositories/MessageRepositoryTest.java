@@ -59,25 +59,6 @@ public class MessageRepositoryTest {
 
     }
 
-
-    @Test
-    public void testFindByTitle() {
-        Message message = new Message();
-
-        String username = String.valueOf(message.getId());
-        message.setCreateDate(new Date());
-        message.setUsername(username);
-
-        messageRepository.save(message);
-        List<Message> foundMessage = messageRepository.findAllByUsernameOrderByCreateDate(username);
-
-        boolean result = foundMessage.stream().anyMatch(msg -> msg.getUsername().equals(username));
-        assertEquals(result, true);
-
-        //cleanup
-        messageRepository.delete(message.getId());
-    }
-
     @Test
     public void testDeleteMessage() {
         Message message = new Message();

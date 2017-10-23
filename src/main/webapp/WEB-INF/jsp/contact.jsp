@@ -27,12 +27,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="message in ctrl.messageList">
-                        <td>{{ message.id }}</td>
-                        <td>{{ message.username }}</td>
-                        <td>{{ message.subject }}</td>
-                        <td>{{ message.body }}</td>
-                    </tr>
+                <tr ng-repeat="message in ctrl.messageList">
+                    <td>{{ message.id }}</td>
+                    <td>{{ message.username }}</td>
+                    <td>{{ message.subject }}</td>
+                    <td>{{ message.body }}</td>
+                    <td>
+                        <button class="btn btn-warning" ng-click='ctrl.edit(message.id)'>Edit</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" ng-click='ctrl.delete(message.id)'>Delete</button>
+                    </td>
+                </tr>
                 </tbody>
             </table>
 
@@ -52,20 +58,22 @@
             </div>
             <div class="modal-body">
                 <form id="messageForm" class="form-horizontal">
-                    <input type="hidden" id="messageID"/>
-                    <input type="hidden" id="messageVersion"/>
-                    <input type="hidden" id="inputAuthor" value="${userName}"/>
+
+                    <input ng-model="ctrl.message.id" type="hidden" id="messageID"/>
+                    <input ng-model="ctrl.message.version" type="hidden" id="messageVersion"/>
+                    <input ng-model="ctrl.message.username" type="hidden" id="inputUsername" value="${userName}"/>
 
                     <div class="form-group">
-                        <label id="cat-title-label" for="inputTitle" class="col-lg-2 control-label">Title</label>
+                        <label for="inputSubject" class="col-lg-2 control-label">Subject</label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="inputTitle" placeholder="Title" autocomplete="off">
+                            <input ng-model="ctrl.message.subject" class="form-control" id="inputSubject"
+                                   placeholder="Subject" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label id="cat-desc-label" for="inputDescription" class="col-lg-2 control-label">Description</label>
+                        <label for="inputBody" class="col-lg-2 control-label">Body</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control" rows="3" id="inputDescription"></textarea>
+                            <textarea ng-model="ctrl.message.body" class="form-control" rows="3" id="inputBody"></textarea>
                         </div>
                     </div>
                 </form>
@@ -74,7 +82,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="saveMessage()">Save changes</button>
+                <button type="button" class="btn btn-primary" ng-click="ctrl.save(ctrl.message)">Save changes</button>
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@
         <p class="page-header h4 text-center text-primary"> CONTACT</p>
 
         <li>
-            <a onclick="openCategoryModal()" href="#" ><span class="mainSBLink"><i class="fa fa-plus-circle"></i> New Message</span></a>
+            <a onclick="openMessageModal()" href="#" ><span class="mainSBLink"><i class="fa fa-plus-circle"></i> New Message</span></a>
         </li>
 
         <li>
