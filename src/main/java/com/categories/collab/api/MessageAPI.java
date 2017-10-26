@@ -25,7 +25,9 @@ public class MessageAPI {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Message save(@ModelAttribute("message") Message message) {
+    public Message save(@RequestBody Message message) {
+        System.out.println(message.getId());
+        logger.info(message);
         return messageService.saveMessage(message);
     }
 

@@ -61,7 +61,7 @@
 
                     <input ng-model="ctrl.message.id" type="hidden" id="messageID"/>
                     <input ng-model="ctrl.message.version" type="hidden" id="messageVersion"/>
-                    <input ng-model="ctrl.message.username" type="hidden" id="inputUsername" value="${userName}"/>
+                    <input ng-model="ctrl.message.username" type="hidden" id="inputUsername" value="{{userName}}"/>
 
                     <div class="form-group">
                         <label for="inputSubject" class="col-lg-2 control-label">Subject</label>

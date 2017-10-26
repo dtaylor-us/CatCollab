@@ -4,7 +4,6 @@ var app = angular.module('contactModule', [])
     .controller('contactController', contactController);
 
 //SERVICE
-
 function contactService($http) {
 
     var url = "http://localhost:8090/api/messages/";
@@ -21,12 +20,19 @@ function contactService($http) {
             .then(function (response) {
                 return response.data;
             })
-    }
+    };
 
-    this.save = function(data) {
+    this.save = function (data) {
         console.log(data);
         return $http.post(url, data);
-    }
+    };
+
+    this.delete = function (id) {
+        console.log(id);
+        return $http.delete(url + id).then(function (response) {
+            return response.data
+        });
+    };
 
 }
 
@@ -50,14 +56,27 @@ function contactController(contactService) {
             });
     };
 
-    self.save = function(message) {
+    self.save = function (message) {
         console.log(message);
         contactService.save(message)
-            .success(function(body) {
+            .success(function (body) {
                 window.location.reload();
                 console.log(body);
-            })
+            });
+    };
+
+    self.delete = function (id) {
+        var answer = confirm("Are you sure you want to delete this category?");
+
+        if (answer) {
+            contactService.delete(id)
+                .then(function (response) {
+                    console.log(response);
+                    window.location.reload();
+                })
+        }
     }
+
 }
 
 function openMessageModal() {
