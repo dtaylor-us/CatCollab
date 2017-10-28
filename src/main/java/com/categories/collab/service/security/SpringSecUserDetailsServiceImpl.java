@@ -1,9 +1,15 @@
-package com.categories.collab.security;
+package com.categories.collab.service.security;
 
-import com.categories.collab.jpa.UserService;
+import com.categories.collab.domain.User;
+import com.categories.collab.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.core.convert.converter.Converter;
+
 
 @Service("userDetailsService")
 public class SpringSecUserDetailsServiceImpl implements UserDetailsService {
@@ -25,7 +31,7 @@ public class SpringSecUserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        return userUserDetailsConverter.convert(userService.findByUserName(username));
+        return userUserDetailsConverter.convert(userService.readByUsername(username));
     }
 
 }

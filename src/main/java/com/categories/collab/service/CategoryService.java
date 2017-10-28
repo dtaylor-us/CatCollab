@@ -15,7 +15,7 @@ public interface CategoryService {
 
     Category saveCategory(Category category);
 
-    Iterable<Category> saveCategoryList(Iterable<Category> items);
+    Iterable<Category> saveCategoryList(Iterable<Category> categories);
 
     void deleteCategory(Integer id);
 

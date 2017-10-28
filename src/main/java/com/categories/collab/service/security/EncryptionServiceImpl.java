@@ -1,4 +1,4 @@
-package com.categories.collab.security;
+package com.categories.collab.service.security;
 
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
