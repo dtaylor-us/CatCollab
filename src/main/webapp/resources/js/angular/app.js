@@ -3,26 +3,30 @@ var categoriesApp = angular.module('categoriesApp',
 categoriesApp.config(['$routeProvider', function ( $routeProvider) {
     $routeProvider
         .when('/main', {
-            templateUrl: 'partials/main.html',
+            templateUrl: 'resources/js/angular/partials/main.html',
             controller: 'TestDataController'
         })
         .when('/showAllCategories', {
-            templateUrl: 'partials/showAllCategories.html',
+            templateUrl: 'angular/partials/showAllCategories.html',
             controller: 'CategoryController'
         })
         .when('/createCategory', {
-            templateUrl: 'partials/createCategory.html',
+            templateUrl: 'angular/partials/createCategory.html',
             controller: 'CategoryController'
         })
         .when('/updateCategory', {
-            templateUrl: 'partials/updateCategory.html',
+            templateUrl: 'angular/partials/updateCategory.html',
             controller: 'CategoryController'
         })
         .when('/deleteCategory', {
-            templateUrl: 'partials/deleteCategory.html',
+            templateUrl: 'angular/partials/deleteCategory.html',
             controller: 'CategoryController'
         })
         .otherwise({
             redirectTo: '/main'
         });
+}]);
+
+categoriesApp.run(['$http', function ( $http) {
+
 }]);
