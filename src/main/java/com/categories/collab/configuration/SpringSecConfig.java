@@ -1,8 +1,8 @@
 package com.categories.collab.configuration;
 
 
-import org.jasypt.springsecurity3.authentication.encoding.PasswordEncoder;
-import org.jasypt.util.password.StrongPasswordEncryptor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -25,40 +25,39 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
         this.authenticationProvider = authenticationProvider;
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(StrongPasswordEncryptor passwordEncryptor){
-        PasswordEncoder passwordEncoder = new PasswordEncoder();
-        passwordEncoder.setPasswordEncryptor(passwordEncryptor);
-        return passwordEncoder;
-    }
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(PasswordEncoder passwordEncoder,
-                                                               UserDetailsService userDetailsService){
-
+    public DaoAuthenticationProvider daoAuthenticationProvider(UserDetailsService userDetailsService) {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
+        daoAuthenticationProvider.setPasswordEncoder(encoder);
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         return daoAuthenticationProvider;
     }
 
     @Autowired
-    public void configureAuthManager(AuthenticationManagerBuilder authenticationManagerBuilder){
+    public void configureAuthManager(AuthenticationManagerBuilder authenticationManagerBuilder) {
         authenticationManagerBuilder.authenticationProvider(authenticationProvider);
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().ignoringAntMatchers("/h2-console").disable()
-                .authorizeRequests().antMatchers("/**/favicon.ico") .permitAll()
-                .and().authorizeRequests().antMatchers("/product/**").permitAll()
-                .and().authorizeRequests().antMatchers("/webjars/**").permitAll()
-                .and().authorizeRequests().antMatchers("/static/css").permitAll()
-                .and().authorizeRequests().antMatchers("/js").permitAll()
-                .and().formLogin().loginPage("/login").permitAll()
-                .and().authorizeRequests().antMatchers("/customer/**").authenticated()
-                .and().authorizeRequests().antMatchers("/user/**").authenticated()
-                .and().exceptionHandling().accessDeniedPage("/access_denied");
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .authorizeRequests().antMatchers("/resources/**").permitAll()
+                .and().authorizeRequests().antMatchers("/login**").permitAll()
+                .and().authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated();
 
+        httpSecurity
+                .authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .and().authorizeRequests().antMatchers("/api/**").access("hasRole('ROLE_USER')");
+
+        httpSecurity
+                .formLogin().loginPage("/login").loginProcessingUrl("/login.do")
+                .defaultSuccessUrl("/category/", true)
+                .failureUrl("/login?err=1")
+                .usernameParameter("username").passwordParameter("password");
+
+        httpSecurity.csrf().disable();
+        httpSecurity.headers().frameOptions().disable();
     }
 }

@@ -17,10 +17,17 @@ public class Role {
     @Version
     private Integer version;
 
-
     private String role;
 
-    @ManyToMany
+    public Role() {
+    }
+
+    public Role(String role, List<User> users) {
+        this.role = role;
+        this.users = users;
+    }
+
+    @ManyToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable
     // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "role_id"),
     //     inverseJoinColumns = @joinColumn(name = "user_id"))

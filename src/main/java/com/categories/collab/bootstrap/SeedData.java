@@ -1,13 +1,8 @@
 package com.categories.collab.bootstrap;
 
 
-import com.categories.collab.common.Utils;
-import com.categories.collab.domain.Category;
-import com.categories.collab.domain.Item;
-import com.categories.collab.domain.Message;
-import com.categories.collab.service.CategoryService;
-import com.categories.collab.service.ItemService;
-import com.categories.collab.service.MessageService;
+import com.categories.collab.domain.*;
+import com.categories.collab.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -33,10 +28,16 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
+
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-//        generateMessages();
+//        generateUser();
     }
 
     private void generateCategories() {
@@ -72,6 +73,19 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         messages.add(message4);
 
         messageService.saveMessageList(messages);
+    }
+
+    private void generateUser() {
+        List<User> users = new ArrayList<>();
+        User user = new User("user", "password");
+        users.add(user);
+        userService.saveUserList(users);
+
+        List<Role> roles = new ArrayList<>();
+        Role userRole = new Role("ROLE_USER", users);
+        roles.add(userRole);
+        roleService.saveRoleList(roles);
+
     }
 
 }

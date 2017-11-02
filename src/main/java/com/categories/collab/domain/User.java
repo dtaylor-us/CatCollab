@@ -18,14 +18,20 @@ public class User {
 
     private String username;
 
-    @Transient
     private String password;
 
-    private String encryptedPassword;
     private Boolean enabled = true;
 
+    public User() {
+    }
 
-    @ManyToMany
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    @ManyToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable
     // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"),
     //     inverseJoinColumns = @joinColumn(name = "role_id"))
@@ -61,14 +67,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEncryptedPassword() {
-        return encryptedPassword;
-    }
-
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
     }
 
     public Boolean getEnabled() {

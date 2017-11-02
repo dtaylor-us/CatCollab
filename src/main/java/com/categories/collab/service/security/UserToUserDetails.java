@@ -19,7 +19,7 @@ public class UserToUserDetails implements Converter<User, UserDetails> {
 
         if (user != null) {
             userDetails.setUsername(user.getUsername());
-            userDetails.setPassword(user.getEncryptedPassword());
+            userDetails.setPassword(user.getPassword());
             userDetails.setEnabled(user.getEnabled());
 
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
