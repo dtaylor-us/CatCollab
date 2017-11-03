@@ -31,7 +31,7 @@ public class User {
         this.roles = roles;
     }
 
-    @ManyToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable
     // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"),
     //     inverseJoinColumns = @joinColumn(name = "role_id"))

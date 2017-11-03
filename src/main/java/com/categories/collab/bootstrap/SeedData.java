@@ -77,7 +77,7 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
 
     private void generateUser() {
         List<User> users = new ArrayList<>();
-        User user = new User("user", "password");
+        User user = new User("user1", "password");
         users.add(user);
         userService.saveUserList(users);
 

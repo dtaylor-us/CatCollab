@@ -1,4 +1,3 @@
-
 <%@ include file="includes/_header.jsp" %>
 <%@ include file="includes/_nav.jsp" %>
 
@@ -29,9 +28,16 @@
                                 </label>
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
-                            <input type="submit" value="login" name="submit" class="btn btn-primary btn-full center">
+                            <div>
+                                <input type="submit" value="login" name="submit"
+                                       class="btn btn-primary btn-full center">
+                            </div>
                         </fieldset>
                     </form>
+
+                    <div>
+                        <a href="#" class="btn btn-info center">Register</a>
+                    </div>
 
                     <!-- VALIDATION -->
                     <c:if test="${not empty param.err}">
@@ -56,6 +62,46 @@
             </div>
         </div>
     </div>
-</div
+</div>
+
+<div id="userModal" class="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">Register a new User!</h5>
+            </div>
+            <div class="modal-body">
+                <form id="userForm" class="form-horizontal">
+
+                    <input ng-model="ctrl.user.id" type="hidden" id="userID"/>
+                    <input ng-model="ctrl.user.version" type="hidden" id="userVersion"/>
+
+                    <div class="form-group">
+                        <label for="inputSubject" class="col-lg-2 control-label">Subject</label>
+                        <div class="col-lg-10">
+                            <input ng-model="ctrl.user.subject" class="form-control" id="inputSubject"
+                                   placeholder="Subject" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputBody" class="col-lg-2 control-label">Body</label>
+                        <div class="col-lg-10">
+                            <textarea ng-model="ctrl.user.body" class="form-control" rows="3" id="inputBody"></textarea>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="user-users"><p class='text-warning'></p></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="ctrl.save(ctrl.user)">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
