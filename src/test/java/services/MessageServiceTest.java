@@ -62,25 +62,6 @@ public class MessageServiceTest {
 
     }
 
-
-    @Test
-    public void testFindByTitle() {
-        Message message = new Message();
-
-        String username = String.valueOf(message.getId());
-        message.setCreateDate(new Date());
-        message.setUsername(username);
-
-        messageService.saveMessage(message);
-        List<Message> foundMessage = Utils.iterableToList(messageService.getMessageList());
-
-        boolean result = foundMessage.stream().anyMatch(msg -> msg.getUsername().equals(username));
-        assertEquals(result, true);
-
-        //cleanup
-        messageService.deleteMessage(message.getId());
-    }
-
     @Test
     public void testDeleteMessage() {
         Message message = new Message();
