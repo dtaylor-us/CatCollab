@@ -6,6 +6,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/category")
 public class CategoryAPI {
@@ -25,7 +27,7 @@ public class CategoryAPI {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Category save(@ModelAttribute("category") Category category) {
+    public Category save(@Valid @RequestBody Category category) {
         return categoryService.saveCategory(category);
     }
 

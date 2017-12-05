@@ -1,6 +1,7 @@
 package com.categories.collab.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 
@@ -15,7 +16,11 @@ public class Item {
     @Version
     private Integer version;
 
+    @NotBlank(message = "title is required!")
+    @Column(unique = true)
     private String title;
+
+    @NotBlank(message = "description is required!")
     private String description;
     private int likes;
     private String text;

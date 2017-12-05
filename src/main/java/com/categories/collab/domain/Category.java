@@ -2,6 +2,7 @@ package com.categories.collab.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,12 +18,18 @@ public class Category {
     @Version
     private Integer version;
 
+    @NotBlank(message = "title is required!")
+    @Column(unique = true)
     private String title;
 
+    @NotBlank(message = "description is required!")
     private String description;
     private String author;
     private String imageURL;
     private String imageURLFull;
+
+    @Transient
+    private String message;
 
     @JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -105,4 +112,11 @@ public class Category {
         this.description = description;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

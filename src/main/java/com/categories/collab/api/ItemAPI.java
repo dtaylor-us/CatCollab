@@ -8,6 +8,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/item")
 public class ItemAPI {
@@ -36,7 +38,7 @@ public class ItemAPI {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Item save(@RequestBody Item item) {
+    public Item save(@Valid @RequestBody Item item) {
         return itemService.saveItem(item);
     }
 
