@@ -25,11 +25,10 @@ public class Category {
     @NotBlank(message = "description is required!")
     private String description;
     private String author;
-    private String imageURL;
-    private String imageURLFull;
 
-    @Transient
-    private String message;
+    @Lob
+    @Column(name = "IMAGE")
+    private byte[] image;
 
     @JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -88,22 +87,6 @@ public class Category {
         this.author = author;
     }
 
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
-    }
-
-    public String getImageURLFull() {
-        return imageURLFull;
-    }
-
-    public void setImageURLFull(String imageURLFull) {
-        this.imageURLFull = imageURLFull;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -112,11 +95,11 @@ public class Category {
         this.description = description;
     }
 
-    public String getMessage() {
-        return message;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public byte[] getImage() {
+        return image;
     }
 }
