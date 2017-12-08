@@ -32,6 +32,8 @@
                 <li>
                     <a href="/contact" title=""><i
                             class="fa fa-navitem fa-lg fa-envelope"></i> Contact </a>
+                </li>                <li>
+                    <i class="fa fa-navitem fa-lg fa-envelope"></i> <%@ include file="./_image_upload.jsp" %>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
