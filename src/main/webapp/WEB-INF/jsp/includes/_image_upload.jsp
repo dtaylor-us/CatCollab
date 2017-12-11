@@ -3,14 +3,5 @@
 <script src="../resources/js/jquery.iframe-transport.js"></script>
 <script src="../resources/js/jquery.fileupload.js"></script>
 <script>
-    $(function () {
-        $('#fileupload').fileupload({
-            dataType: 'json',
-            done: function (e, data) {
-                $.each(data.result.files, function (index, file) {
-                    $('<p/>').text(file.name).appendTo(document.body);
-                });
-            }
-        });
-    });
+
 </script>

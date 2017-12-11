@@ -1,11 +1,14 @@
 package com.categories.collab.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="image_model")
 public class ImageModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
@@ -16,6 +19,7 @@ public class ImageModel {
     private String type;
 
     @Lob
+    @JsonProperty("pic")
     @Column(name="pic")
     private byte[] pic;
 

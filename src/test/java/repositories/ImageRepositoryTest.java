@@ -32,7 +32,7 @@ public class ImageRepositoryTest {
         Files.write(Paths.get("retrieve-dir/" + spiderManImg.getName()
                 + "." + spiderManImg.getType()), spiderManImg.getPic());
 
-        imageRepository.delete(spiderManImg);
+//        imageRepository.delete(spiderManImg);
     }
 
 
