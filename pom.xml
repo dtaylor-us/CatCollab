@@ -59,6 +59,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.graphql-java/graphql-java -->
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java</artifactId>
+            <version>5.0</version>
+        </dependency>
+
         <!-- ============================================== -->
         <!-- ENCRYPTION LIBRARY -->
         <!-- ============================================== -->
